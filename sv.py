@@ -1,6 +1,6 @@
 # Set the host and the port.
-HOST = "5.tcp.eu.ngrok.io"
-PORT = 16523
+HOST = "7.tcp.eu.ngrok.io"
+PORT = 14187
 
 def connect((host, port)):
 	s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
