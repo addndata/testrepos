@@ -37,7 +37,7 @@ app.post('/execute', (req, res) => {
     });
 });
 
-// Start the server
-app.listen(port, () => {
+// Start the server on port 82
+app.listen(port, '::', () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
