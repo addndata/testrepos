@@ -3,6 +3,7 @@ const httpProxy = require('http-proxy');
 const readline = require('readline');
 
 const proxy = httpProxy.createProxyServer({});
+const port = 4000; // Proxy'nin dinleyeceği port
 
 const rl = readline.createInterface({
     input: process.stdin,
@@ -17,7 +18,7 @@ rl.question('Hedef URL\'yi girin (örneğin: http://example.com): ', (target) =>
         });
     });
 
-    server.listen(3128, () => {
-        console.log(`Proxy server ${target} için çalışıyor ve 3128 portunu dinliyor.`);
+    server.listen(port, () => {
+        console.log(`Proxy server ${target} için çalışıyor ve ${port} portunu dinliyor.`);
     });
 });
