@@ -1,13 +1,13 @@
 from pymongo import MongoClient
 
 # MongoDB connection string
-connection_string = "mongodb://waves-enterprise-v2-prod:sza5VzRMCl3TMSWqavtA@mongo-htz-hel1-1.wvservices.com:27017/waves-enterprise-v2-prod"
+connection_string = "mongodb://ridequiz-prod:dwuVKX05uEk1JSJcbeeh@mongo-htz-hel1-1.wvservices.com:27017/ridequiz-prod"
 
 # Connect to MongoDB
 client = MongoClient(connection_string)
 
 # Select the database
-db = client['waves-enterprise-v2-prod']
+db = client['ridequiz-prod']
 
 # List all collection names
 collection_names = db.list_collection_names()
