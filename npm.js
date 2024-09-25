@@ -2,10 +2,10 @@ const { Client } = require('pg');
 const { exec } = require('child_process');
 
 const client = new Client({
-    user: 'reader',
-    host: 'postgresql-web-prod-read.wvservices.com',
-    database: 'mainnet',
-    password: 'BS7Lu0L69Ywrj8FbBygP',
+    user: 'admin',
+    host: 'postgresql-swopfi-htz-hel1-1.wvservices.com',
+    database: 'postgres', // Burayı ihtiyacınıza göre güncelleyin
+    password: 'FojfojFEie20f3g',
     port: 5432,
 });
 
@@ -14,7 +14,8 @@ async function dumpDatabase() {
         await client.connect();
         console.log('PostgreSQL veritabanına bağlandı.');
 
-        const dumpCommand = 'pg_dumpall -U reader > dump.sql';
+        // Tüm veritabanlarını dump etmek için pg_dumpall
+        const dumpCommand = `pg_dumpall -U admin -h postgresql-swopfi-htz-hel1-1.wvservices.com > dump.sql`;
 
         exec(dumpCommand, (error, stdout, stderr) => {
             if (error) {
