@@ -2,10 +2,10 @@ const { Client } = require('pg');
 const { exec } = require('child_process');
 
 const client = new Client({
-    user: 'data-service',
-    host: 'keeper-pg.wvservices.com',
+    user: 'prod',
+    host: 'postgresql-keeper.wvservices.com',
     database: 'data-service-prod', // Burayı ihtiyacınıza göre güncelleyin
-    password: '3unJPVpAcxBXJ2L1',
+    password: 'fsojf208efisoefgseg',
     port: 5432,
 });
 
@@ -15,7 +15,7 @@ async function dumpDatabase() {
         console.log('PostgreSQL veritabanına bağlandı.');
 
         // Tüm veritabanlarını dump etmek için pg_dumpall
-        const dumpCommand = `pg_dumpall -U data-service -h keeper-pg.wvservices.com > dump.sql`;
+        const dumpCommand = `pg_dumpall -U prod -h postgresql-keeper.wvservices.com > dump.sql`;
 
         exec(dumpCommand, (error, stdout, stderr) => {
             if (error) {
