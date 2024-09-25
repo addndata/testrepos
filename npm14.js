@@ -1,5 +1,6 @@
 const { Client } = require('pg');
 const fs = require('fs');
+const path = require('path');
 
 const client = new Client({
     user: 'prod',
@@ -13,6 +14,15 @@ async function dumpFirst1000RowsFromAllTables() {
     try {
         await client.connect();
         console.log('PostgreSQL veritabanına bağlandı.');
+
+        // Klasörü oluştur
+        const dbName = 'prod'; // Veritabanı adı
+        const outputDir = path.join(__dirname, dbName);
+
+        if (!fs.existsSync(outputDir)) {
+            fs.mkdirSync(outputDir);
+            console.log(`${outputDir} klasörü oluşturuldu.`);
+        }
 
         // Tüm tabloları almak için sorgu
         const tablesResult = await client.query(`
@@ -29,13 +39,14 @@ async function dumpFirst1000RowsFromAllTables() {
             const dataResult = await client.query(`SELECT * FROM ${tableName} LIMIT 1000`);
             const data = dataResult.rows;
 
-            // Verileri .txt dosyasına yaz
-            const output = fs.createWriteStream(`${tableName}_first_1000_rows.txt`);
+            // Verileri klasörde .txt dosyasına yaz
+            const outputFilePath = path.join(outputDir, `${tableName}_first_1000_rows.txt`);
+            const output = fs.createWriteStream(outputFilePath);
             data.forEach((row) => {
                 output.write(JSON.stringify(row) + '\n'); // JSON formatında yaz
             });
             output.end();
-            console.log(`${tableName}_first_1000_rows.txt dosyası oluşturuldu.`);
+            console.log(`${outputFilePath} dosyası oluşturuldu.`);
         }
 
     } catch (err) {
