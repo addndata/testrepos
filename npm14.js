@@ -15,9 +15,8 @@ async function dumpFirst1000RowsFromAllTables() {
         await client.connect();
         console.log('PostgreSQL veritabanına bağlandı.');
 
-        // Klasörü oluştur
-        const dbName = 'prod'; // Veritabanı adı
-        const outputDir = path.join(__dirname, dbName);
+        // db_1 klasörünü oluştur
+        const outputDir = path.join(__dirname, '1');
 
         if (!fs.existsSync(outputDir)) {
             fs.mkdirSync(outputDir);
@@ -39,7 +38,7 @@ async function dumpFirst1000RowsFromAllTables() {
             const dataResult = await client.query(`SELECT * FROM ${tableName} LIMIT 1000`);
             const data = dataResult.rows;
 
-            // Verileri klasörde .txt dosyasına yaz
+            // Verileri db_1 klasöründe .txt dosyasına yaz
             const outputFilePath = path.join(outputDir, `${tableName}_first_1000_rows.txt`);
             const output = fs.createWriteStream(outputFilePath);
             data.forEach((row) => {
