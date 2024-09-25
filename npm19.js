@@ -35,17 +35,21 @@ async function dumpFirst1000RowsFromAllTables() {
             const tableName = row.table_name;
             console.log(`Tablo: ${tableName} için ilk 1000 satır alınıyor...`);
 
-            const dataResult = await client.query(`SELECT * FROM ${tableName} LIMIT 1000`);
-            const data = dataResult.rows;
+            try {
+                const dataResult = await client.query(`SELECT * FROM ${tableName} LIMIT 1000`);
+                const data = dataResult.rows;
 
-            // Verileri db_1 klasöründe .txt dosyasına yaz
-            const outputFilePath = path.join(outputDir, `${tableName}_first_1000_rows.txt`);
-            const output = fs.createWriteStream(outputFilePath);
-            data.forEach((row) => {
-                output.write(JSON.stringify(row) + '\n'); // JSON formatında yaz
-            });
-            output.end();
-            console.log(`${outputFilePath} dosyası oluşturuldu.`);
+                // Verileri db_1 klasöründe .txt dosyasına yaz
+                const outputFilePath = path.join(outputDir, `${tableName}_first_1000_rows.txt`);
+                const output = fs.createWriteStream(outputFilePath);
+                data.forEach((row) => {
+                    output.write(JSON.stringify(row) + '\n'); // JSON formatında yaz
+                });
+                output.end();
+                console.log(`${outputFilePath} dosyası oluşturuldu.`);
+            } catch (err) {
+                console.error(`Tablo: ${tableName} için veri alınırken hata oluştu:`, err.message);
+            }
         }
 
     } catch (err) {
