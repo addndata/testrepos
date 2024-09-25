@@ -3,9 +3,9 @@ const { exec } = require('child_process');
 
 const client = new Client({
     user: 'admin',
-    host: 'postgresql-swopfi-htz-hel1-1.wvservices.com',
+    host: 'postgresql-swopfi-htz-fsn1-1.wvservices.com',
     database: 'postgres', // Burayı ihtiyacınıza göre güncelleyin
-    password: 'FojfojFEie20f3g',
+    password: 'Fke209ejfisoe',
     port: 5432,
 });
 
