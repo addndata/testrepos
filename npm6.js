@@ -4,7 +4,7 @@ const { exec } = require('child_process');
 const client = new Client({
     user: 'prod',
     host: 'postgresql-keeper.wvservices.com',
-    database: 'data-service-prod', // Burayı ihtiyacınıza göre güncelleyin
+    database: 'prod', // Burayı ihtiyacınıza göre güncelleyin
     password: 'fsojf208efisoefgseg',
     port: 5432,
 });
