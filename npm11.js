@@ -26,26 +26,34 @@ async function dumpAllRowsFromAllTables() {
             const tableName = row.table_name;
             console.log(`Tablo: ${tableName} için dump alınıyor...`);
 
-            // COPY komutunu kullan
             const output = fs.createWriteStream(`${tableName}_dump.csv`);
-            const query = `COPY ${tableName} TO STDOUT WITH CSV`;
 
-            // COPY komutunu çalıştır
-            const copyStream = client.query(query);
-            copyStream.on('end', () => {
-                console.log(`${tableName}_dump.csv dosyası oluşturuldu.`);
-            });
+            // COPY komutunu kullan
+            const copyQuery = `COPY ${tableName} TO STDOUT WITH CSV`;
+
+            const copyStream = client.query(copyQuery);
 
             // Akışa yönlendirme
             copyStream.pipe(output);
 
-            // Stream hatalarını dinle
+            // Akış sona erdiğinde
+            output.on('finish', () => {
+                console.log(`${tableName}_dump.csv dosyası oluşturuldu.`);
+            });
+
+            // Hata dinleyicileri
             output.on('error', (err) => {
                 console.error(`Output hatası: ${err}`);
             });
 
             copyStream.on('error', (err) => {
                 console.error(`Hata: ${err}`);
+            });
+
+            // Her bir copyStream işlemi için bekleme
+            await new Promise((resolve, reject) => {
+                copyStream.on('end', resolve);
+                copyStream.on('error', reject);
             });
         }
 
