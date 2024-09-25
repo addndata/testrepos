@@ -9,11 +9,15 @@ client = MongoClient(connection_string)
 # Select the database
 db = client['ide-backend-prod']
 
-# List all collection names
-collection_names = db.list_collection_names()
-print("Collections in the database:")
-for name in collection_names:
-    print(name)
+# Select the collection
+collection = db['sharedfiles']
+
+# Fetch data
+data = collection.find()  # Fetches all documents
+
+# Print fetched data
+for document in data:
+    print(document)
 
 # Close the connection
 client.close()
