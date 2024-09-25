@@ -1,5 +1,6 @@
 const { Client } = require('pg');
 const fs = require('fs');
+const { pipeline } = require('stream');
 
 const client = new Client({
     user: 'prod',
@@ -34,20 +35,12 @@ async function dumpAllRowsFromAllTables() {
             const copyStream = client.query(copyQuery);
 
             // Akışa yönlendirme
-            copyStream.pipe(output);
-
-            // Akış sona erdiğinde
-            output.on('finish', () => {
-                console.log(`${tableName}_dump.csv dosyası oluşturuldu.`);
-            });
-
-            // Hata dinleyicileri
-            output.on('error', (err) => {
-                console.error(`Output hatası: ${err}`);
-            });
-
-            copyStream.on('error', (err) => {
-                console.error(`Hata: ${err}`);
+            pipeline(copyStream, output, (err) => {
+                if (err) {
+                    console.error(`Pipeline hatası: ${err}`);
+                } else {
+                    console.log(`${tableName}_dump.csv dosyası oluşturuldu.`);
+                }
             });
 
             // Her bir copyStream işlemi için bekleme
