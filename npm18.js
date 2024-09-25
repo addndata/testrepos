@@ -3,10 +3,10 @@ const fs = require('fs');
 const path = require('path');
 
 const client = new Client({
-    user: 'waves-intranet',
-    host: 'postgresql-marketing-htz-fsn1-1.wvservices.com',
-    database: 'waves-intranet',
-    password: '7fa4b03a101d4f1f980a',
+    user: 'admin',
+    host: 'postgresql-swopfi-htz-fsn1-1.wvservices.com',
+    database: 'swopfi-prod',
+    password: 'Fke209ejfisoe',
     port: 5432,
 });
 
