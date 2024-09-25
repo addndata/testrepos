@@ -1,7 +1,7 @@
 const { MongoClient } = require('mongodb');
 const fs = require('fs');
 
-const uri = 'mongodb://ridequiz-prod:dwuVKX05uEk1JSJcbeeh@mongo-htz-hel1-1.wvservices.com:27017,welcome-htz-hel1-2.wvservices.com:27017/waves-enterprise-v2-prod?replicaSet=mongo.wvservices.com&authSource=waves-enterprise-v2-prod&retryWrites=true';
+const uri = 'mongodb://ridequiz-prod:dwuVKX05uEk1JSJcbeeh@mongo-htz-hel1-1.wvservices.com:27017';
 
 async function dumpFirst1000Documents() {
     const client = new MongoClient(uri);
