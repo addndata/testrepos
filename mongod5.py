@@ -3,13 +3,13 @@ import json
 from bson import ObjectId
 
 # MongoDB connection string
-connection_string = "mongodb://ide-backend-prod:0uPvPTaE0KDG4ZS@mongo-htz-hel1-1.wvservices.com:27017/ide-backend-prod"
+connection_string = "mongodb://ide-backend-stage:Kd3F278zNXaq7ZV@mongo-htz-hel1-1.wvservices.com:27017/ide-backend-stage"
 
 # Connect to MongoDB
 client = MongoClient(connection_string)
 
 # Select the database
-db = client['ide-backend-prod']
+db = client['ide-backend-stage']
 
 # Select the collection
 collection = db['sharedfiles']
