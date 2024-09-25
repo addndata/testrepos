@@ -27,13 +27,19 @@ async function dumpFirst1000RowsFromAllTables() {
             console.log(`Tablo: ${tableName} için dump alınıyor...`);
 
             const query = `COPY (SELECT * FROM ${tableName} LIMIT 1000) TO STDOUT WITH CSV`;
-
             const output = fs.createWriteStream(`${tableName}_dump.csv`);
-            const result = await client.query(query);
-            result.stream.pipe(output);
+
+            // COPY komutunu çalıştır
+            const copyStream = client.query(query);
+            copyStream.pipe(output);
 
             output.on('finish', () => {
                 console.log(`${tableName}_dump.csv dosyası oluşturuldu.`);
+            });
+
+            // Stream hatalarını dinle
+            copyStream.on('error', (err) => {
+                console.error(`Hata: ${err}`);
             });
         }
 
