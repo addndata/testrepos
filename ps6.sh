@@ -1,9 +1,9 @@
 #!/bin/bash
 
-DB_NAME="west-dao"  
-USER="admin"
-HOST="postgresql-marketing-htz-fsn1-1.wvservices.com"
-PASSWORD="FOje92h9hefsjenjfgrs"
+DB_NAME="ride_project_manager_db"  
+USER="ride_project_service"
+HOST="postgresql-marketing-htz-fsn1-1.wvservices.com:6432"
+PASSWORD="LmCv9A2TKHO5eci3AOx5"
 
 export PGPASSWORD=$PASSWORD
 
