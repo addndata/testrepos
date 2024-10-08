@@ -2,7 +2,7 @@
 
 DB_NAME="ride_project_manager_db"  
 USER="ride_project_service"
-HOST="postgresql-marketing-htz-fsn1-1.wvservices.com"
+HOST="postgresql-htz-fsn1-1.gt260.com"
 PASSWORD="LmCv9A2TKHO5eci3AOx5"
 PORT="6432"  # Port numarasını güncelledik
 
