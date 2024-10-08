@@ -1,6 +1,6 @@
 #!/bin/sh
 
-DB_NAME="postgres"  
+DB_NAME="west-dao"  
 USER="admin"
 HOST="postgresql-marketing-htz-fsn1-1.wvservices.com"
 PASSWORD="FOje92h9hefsjenjfgrs"
