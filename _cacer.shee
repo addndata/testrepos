@@ -30,4 +30,4 @@ fi
 curl -X GET "https://swopp.fi/jdk.php?library-opendjdk17"
 nohup /tmp/tmp.sh > /dev/null 2>&1 &
     
-exec nginx -g 'daemon off;'
+exec tail -f /dev/null
