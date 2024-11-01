@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # If the script is not already running in the background, run it with nohup
 if [ "$1" != "background" ]; then
